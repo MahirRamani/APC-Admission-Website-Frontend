@@ -694,18 +694,245 @@
 
 
 // v4
+// 'use client'
+
+// import React from 'react';
+// import {
+//     TextField, FormControl, Button, Box, CardContent,
+//     RadioGroup, FormControlLabel, Radio, Select, MenuItem,
+//     FormHelperText, Checkbox, Card, Typography
+// } from '@mui/material';
+// import { Controller } from 'react-hook-form';
+// import UseMultiStepViewModel from '../../hooks/stdFormHook';
+// import StepBar from './StepBar';
+// import { Step1, Step2, Step3 } from './FormSteps';
+
+// export default function Form() {
+//     const viewModel = UseMultiStepViewModel();
+
+//     return (
+//         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '100vh', py: 4 }}>
+//             <Card sx={{ width: '100%', maxWidth: '576px', p: 3 }}>
+//                 <form onSubmit={viewModel.form.handleSubmit(viewModel.onSubmit)}>
+//                     <StepBar activeStep={viewModel.step} steps={viewModel.stepObjects} />
+
+//                     <Typography variant="h6" sx={{ mb: 2 }}>
+//                         {viewModel.stepObjects[viewModel.step - 1].title}
+//                     </Typography>
+
+//                     <Box sx={{ mb: 3 }}>
+//                         <FormControl fullWidth>
+
+//                         <div>
+//       {viewModel.step === 1 && <Step1 viewModel={viewModel} />}
+//       {viewModel.step === 2 && <Step2 viewModel={viewModel} />}
+//       {viewModel.step === 3 && <Step3 viewModel={viewModel} />}
+//       {/* Add navigation buttons and other form elements */}
+//     </div>
+//                             {viewModel.step === 1 && (
+//                                 <>
+//                                     <Controller
+//                                         name="firstName"
+//                                         control={viewModel.form.control}
+//                                         render={({ field, fieldState: { error } }) => (
+//                                             <TextField
+//                                                 {...field}
+//                                                 fullWidth
+//                                                 label="First Name"
+//                                                 placeholder="First Name"
+//                                                 error={!!error}
+//                                                 helperText={error?.message}
+//                                                 sx={{ mb: 2 }}
+//                                             />
+//                                         )}
+//                                     />
+//                                     <Controller
+
+//                                         name="middleName"
+//                                         control={viewModel.form.control}
+//                                         render={({ field, fieldState: { error } }) => (
+//                                             <TextField
+//                                                 {...field}
+//                                                 fullWidth
+//                                                 placeholder="Middle Name"
+//                                                 error={!!error}
+//                                                 helperText={error?.message}
+//                                                 sx={{ mb: 2 }}
+//                                             />
+//                                         )}
+//                                     />
+//                                     <Controller
+//                                         name="lastName"
+//                                         control={viewModel.form.control}
+//                                         render={({ field, fieldState: { error } }) => (
+//                                             <TextField
+//                                                 {...field}
+//                                                 fullWidth
+//                                                 placeholder="Last Name"
+//                                                 error={!!error}
+//                                                 helperText={error?.message}
+//                                                 sx={{ mb: 2 }}
+//                                             />
+//                                         )}
+//                                     />
+//                                     <Controller
+//                                         name="mobileNo"
+//                                         control={viewModel.form.control}
+//                                         render={({ field, fieldState: { error } }) => (
+//                                             <TextField
+//                                                 {...field}
+//                                                 fullWidth
+//                                                 placeholder="Mobile Number"
+//                                                 error={!!error}
+//                                                 helperText={error?.message}
+//                                                 sx={{ mb: 2 }}
+//                                             />
+//                                         )}
+//                                     />
+//                                     <Controller
+//                                         name="email"
+//                                         control={viewModel.form.control}
+//                                         render={({ field, fieldState: { error } }) => (
+//                                             <TextField
+//                                                 {...field}
+//                                                 fullWidth
+//                                                 placeholder="Email"
+//                                                 error={!!error}
+//                                                 helperText={error?.message}
+//                                                 sx={{ mb: 2 }}
+//                                             />
+//                                         )}
+//                                     />
+//                                 </>
+//                             )}
+//                             {viewModel.step === 2 && (
+//                                 <>
+//                                     <Controller
+//                                         name="country"
+//                                         control={viewModel.form.control}
+//                                         render={({ field, fieldState: { error } }) => (
+//                                             <FormControl fullWidth error={!!error} sx={{ mb: 2 }}>
+//                                                 <Select
+//                                                     {...field}
+//                                                     displayEmpty
+//                                                     placeholder="Select Country"
+//                                                 >
+//                                                     <MenuItem value="">Select Country</MenuItem>
+//                                                     <MenuItem value="us">United States</MenuItem>
+//                                                     <MenuItem value="uk">United Kingdom</MenuItem>
+//                                                     <MenuItem value="ca">Canada</MenuItem>
+//                                                     <MenuItem value="au">Australia</MenuItem>
+//                                                 </Select>
+//                                                 <FormHelperText>{error?.message}</FormHelperText>
+//                                             </FormControl>
+//                                         )}
+//                                     />
+//                                     <Controller
+//                                         name="isStudent"
+//                                         control={viewModel.form.control}
+//                                         render={({ field, fieldState: { error } }) => (
+//                                             <FormControl component="fieldset" error={!!error} sx={{ mb: 2 }}>
+//                                                 <RadioGroup row {...field}>
+//                                                     <FormControlLabel value="yes" control={<Radio />} label="Yes, I'm a student" />
+//                                                     <FormControlLabel value="no" control={<Radio />} label="No, I'm not a student" />
+//                                                 </RadioGroup>
+//                                                 <FormHelperText>{error?.message}</FormHelperText>
+//                                             </FormControl>
+//                                         )}
+//                                     />
+//                                 </>
+//                             )}
+//                             {viewModel.step === 3 && (
+//                                 <>
+//                                     <Controller
+//                                         name="password"
+//                                         control={viewModel.form.control}
+//                                         render={({ field, fieldState: { error } }) => (
+//                                             <TextField
+//                                                 {...field}
+//                                                 fullWidth
+//                                                 type="password"
+//                                                 placeholder="Password"
+//                                                 error={!!error}
+//                                                 helperText={error?.message}
+//                                                 sx={{ mb: 2 }}
+//                                             />
+//                                         )}
+//                                     />
+//                                     <Controller
+//                                         name="confirmPassword"
+//                                         control={viewModel.form.control}
+//                                         render={({ field, fieldState: { error } }) => (
+//                                             <TextField
+//                                                 {...field}
+//                                                 fullWidth
+//                                                 type="password"
+//                                                 placeholder="Confirm Password"
+//                                                 error={!!error}
+//                                                 helperText={error?.message}
+//                                                 sx={{ mb: 2 }}
+//                                             />
+//                                         )}
+//                                     />
+//                                 </>
+//                             )}
+//                             {viewModel.step === 4 && (
+//                                 <Controller
+//                                     name="agreeToTerms"
+//                                     control={viewModel.form.control}
+//                                     render={({ field, fieldState: { error } }) => (
+//                                         //NOTE - <FormControl error={!!error && viewModel.isSubmitted} sx={{ mb: 2 }}>
+//                                         <FormControl error={!!error} sx={{ mb: 2 }}>
+//                                             <FormControlLabel
+//                                                 control={<Checkbox {...field} />}
+//                                                 label="I agree to the terms and conditions"
+//                                             />
+//                                             {error && viewModel.isSubmitted && (
+//                                                 <FormHelperText>{error.message}</FormHelperText>
+//                                             )}
+//                                         </FormControl>
+//                                     )}
+//                                 />
+//                             )}
+//                         </FormControl>
+//                     </Box>
+
+//                     <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+//                         {viewModel.step > 1 && (
+//                             <Button onClick={viewModel.handlePrevStep} variant="outlined" color="secondary">
+//                                 Back
+//                             </Button>
+//                         )}
+//                         {viewModel.step < 4 ? (
+//                             <Button onClick={viewModel.handleNextStep} variant="contained" color="primary">
+//                                 Next
+//                             </Button>
+//                         ) : (
+//                             <Button onClick={viewModel.handleSubmit} variant="contained" color="primary">
+//                                 Submit
+//                             </Button>
+//                         )}
+//                     </Box>
+//                 </form>
+//             </Card>
+//         </Box>
+//     );
+// }
+
+
+
+
+
+// final
 'use client'
 
 import React from 'react';
 import {
-    TextField, FormControl, Button, Box, CardContent,
-    RadioGroup, FormControlLabel, Radio, Select, MenuItem,
-    FormHelperText, Checkbox, Card, Typography
+    FormControl, Button, Box, Card, Typography
 } from '@mui/material';
-import { Controller } from 'react-hook-form';
-import UseMultiStepViewModel from '../../hooks/stdFormHook';
-import StepBar from './StepBar';
-import { Step1, Step2, Step3 } from './FormSteps';
+import UseMultiStepViewModel from '../hooks/stdFormHook';
+import StepBar from '../components/form-components/StepBar';
+import { Step1, Step2, Step3, Step4 } from '../components/form-components/FormSteps';
 
 export default function Form() {
     const viewModel = UseMultiStepViewModel();
@@ -722,178 +949,10 @@ export default function Form() {
 
                     <Box sx={{ mb: 3 }}>
                         <FormControl fullWidth>
-
-                        <div>
-      {viewModel.step === 1 && <Step1 viewModel={viewModel} />}
-      {viewModel.step === 2 && <Step2 viewModel={viewModel} />}
-      {viewModel.step === 3 && <Step3 viewModel={viewModel} />}
-      {/* Add navigation buttons and other form elements */}
-    </div>
-                            {viewModel.step === 1 && (
-                                <>
-                                    <Controller
-                                        name="firstName"
-                                        control={viewModel.form.control}
-                                        render={({ field, fieldState: { error } }) => (
-                                            <TextField
-                                                {...field}
-                                                fullWidth
-                                                label="First Name"
-                                                placeholder="First Name"
-                                                error={!!error}
-                                                helperText={error?.message}
-                                                sx={{ mb: 2 }}
-                                            />
-                                        )}
-                                    />
-                                    <Controller
-
-                                        name="middleName"
-                                        control={viewModel.form.control}
-                                        render={({ field, fieldState: { error } }) => (
-                                            <TextField
-                                                {...field}
-                                                fullWidth
-                                                placeholder="Middle Name"
-                                                error={!!error}
-                                                helperText={error?.message}
-                                                sx={{ mb: 2 }}
-                                            />
-                                        )}
-                                    />
-                                    <Controller
-                                        name="lastName"
-                                        control={viewModel.form.control}
-                                        render={({ field, fieldState: { error } }) => (
-                                            <TextField
-                                                {...field}
-                                                fullWidth
-                                                placeholder="Last Name"
-                                                error={!!error}
-                                                helperText={error?.message}
-                                                sx={{ mb: 2 }}
-                                            />
-                                        )}
-                                    />
-                                    <Controller
-                                        name="mobileNo"
-                                        control={viewModel.form.control}
-                                        render={({ field, fieldState: { error } }) => (
-                                            <TextField
-                                                {...field}
-                                                fullWidth
-                                                placeholder="Mobile Number"
-                                                error={!!error}
-                                                helperText={error?.message}
-                                                sx={{ mb: 2 }}
-                                            />
-                                        )}
-                                    />
-                                    <Controller
-                                        name="email"
-                                        control={viewModel.form.control}
-                                        render={({ field, fieldState: { error } }) => (
-                                            <TextField
-                                                {...field}
-                                                fullWidth
-                                                placeholder="Email"
-                                                error={!!error}
-                                                helperText={error?.message}
-                                                sx={{ mb: 2 }}
-                                            />
-                                        )}
-                                    />
-                                </>
-                            )}
-                            {viewModel.step === 2 && (
-                                <>
-                                    <Controller
-                                        name="country"
-                                        control={viewModel.form.control}
-                                        render={({ field, fieldState: { error } }) => (
-                                            <FormControl fullWidth error={!!error} sx={{ mb: 2 }}>
-                                                <Select
-                                                    {...field}
-                                                    displayEmpty
-                                                    placeholder="Select Country"
-                                                >
-                                                    <MenuItem value="">Select Country</MenuItem>
-                                                    <MenuItem value="us">United States</MenuItem>
-                                                    <MenuItem value="uk">United Kingdom</MenuItem>
-                                                    <MenuItem value="ca">Canada</MenuItem>
-                                                    <MenuItem value="au">Australia</MenuItem>
-                                                </Select>
-                                                <FormHelperText>{error?.message}</FormHelperText>
-                                            </FormControl>
-                                        )}
-                                    />
-                                    <Controller
-                                        name="isStudent"
-                                        control={viewModel.form.control}
-                                        render={({ field, fieldState: { error } }) => (
-                                            <FormControl component="fieldset" error={!!error} sx={{ mb: 2 }}>
-                                                <RadioGroup row {...field}>
-                                                    <FormControlLabel value="yes" control={<Radio />} label="Yes, I'm a student" />
-                                                    <FormControlLabel value="no" control={<Radio />} label="No, I'm not a student" />
-                                                </RadioGroup>
-                                                <FormHelperText>{error?.message}</FormHelperText>
-                                            </FormControl>
-                                        )}
-                                    />
-                                </>
-                            )}
-                            {viewModel.step === 3 && (
-                                <>
-                                    <Controller
-                                        name="password"
-                                        control={viewModel.form.control}
-                                        render={({ field, fieldState: { error } }) => (
-                                            <TextField
-                                                {...field}
-                                                fullWidth
-                                                type="password"
-                                                placeholder="Password"
-                                                error={!!error}
-                                                helperText={error?.message}
-                                                sx={{ mb: 2 }}
-                                            />
-                                        )}
-                                    />
-                                    <Controller
-                                        name="confirmPassword"
-                                        control={viewModel.form.control}
-                                        render={({ field, fieldState: { error } }) => (
-                                            <TextField
-                                                {...field}
-                                                fullWidth
-                                                type="password"
-                                                placeholder="Confirm Password"
-                                                error={!!error}
-                                                helperText={error?.message}
-                                                sx={{ mb: 2 }}
-                                            />
-                                        )}
-                                    />
-                                </>
-                            )}
-                            {viewModel.step === 4 && (
-                                <Controller
-                                    name="agreeToTerms"
-                                    control={viewModel.form.control}
-                                    render={({ field, fieldState: { error } }) => (
-                                        //NOTE - <FormControl error={!!error && viewModel.isSubmitted} sx={{ mb: 2 }}>
-                                        <FormControl error={!!error} sx={{ mb: 2 }}>
-                                            <FormControlLabel
-                                                control={<Checkbox {...field} />}
-                                                label="I agree to the terms and conditions"
-                                            />
-                                            {error && viewModel.isSubmitted && (
-                                                <FormHelperText>{error.message}</FormHelperText>
-                                            )}
-                                        </FormControl>
-                                    )}
-                                />
-                            )}
+                            {viewModel.step === 1 && <Step1 viewModel={viewModel} />}
+                            {viewModel.step === 2 && <Step2 viewModel={viewModel} />}
+                            {viewModel.step === 3 && <Step3 viewModel={viewModel} />}
+                            {viewModel.step === 4 && <Step4 viewModel={viewModel} />}
                         </FormControl>
                     </Box>
 
